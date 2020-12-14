@@ -1,4 +1,15 @@
-{
+{ 
+
+  let playerPoints = 0;
+  let computerPoints = 0;
+  
+  
+  function results () {
+  document.getElementById('results').innerHTML = playerPoints + " - " + computerPoints;
+  } 
+
+  setInterval(results);
+
   const playGame = function(playerInput) {
 
   clearMessages();
@@ -27,7 +38,6 @@
 
   printMessage('Mój ruch to: ' + computerMove);
 
-  
   console.log('Gracz wpisał: ' + playerInput);
 
   const playerMove = getMoveName(playerInput);
@@ -42,42 +52,42 @@
 
   const displayResult = function(argComputerMove, argPlayerMove) {  
     if (argComputerMove == 'kamień' && argPlayerMove == 'papier') {
-      printMessage('Ty wygrywasz!');
-      return 'Ty wygrywasz!';
+      printMessage('Ty wygrywasz! <i class="far fa-smile-beam"></i>' );
+      win();
     }
     else if (argComputerMove == 'kamień' && argPlayerMove == 'nożyce') {
-      printMessage('Ty przegrywasz!');
-      return 'Ty przegrywasz!';
+      printMessage('Ty przegrywasz! <i class="far fa-sad-cry"></i>');
+      lose();
     }
     else if (argComputerMove == 'kamień' && argPlayerMove == 'kamień') {
-      printMessage('Remis!');
+      printMessage('Remis! <i class="far fa-surprise"></i>');
       return 'Remis!';
     }
     else if (argComputerMove == 'papier' && argPlayerMove == 'nożyce') {
-      printMessage('Ty wygrywasz!');
-      return 'Ty wygrywasz!';
+      printMessage('Ty wygrywasz!  <i class="far fa-smile-beam"></i>');
+      win();
     }
     else if (argComputerMove == 'papier' && argPlayerMove == 'kamień') {
-      printMessage('Ty przegrywasz!');
-      return 'Ty przegrywasz!';
+      printMessage('Ty przegrywasz! <i class="far fa-sad-cry"></i>');
+      lose();
     } 
     else if (argComputerMove == 'papier' && argPlayerMove == 'papier') {
-      printMessage('Remis!');
+      printMessage('Remis! <i class="far fa-surprise"></i>');
       return 'Remis!';
     }
     else if (argComputerMove == 'nożyce' && argPlayerMove == 'papier') {
-      printMessage('Ty przegrywasz!');
-      return 'Ty przegrywasz!';
+      printMessage('Ty przegrywasz! <i class="far fa-sad-cry"></i>');
+      lose();
     }
     else if (argComputerMove == 'nożyce' && argPlayerMove == 'kamień') {
-      printMessage('Ty przegrywasz!');
-      return 'Ty przegrywasz!';
+      printMessage('Ty przegrywasz! <i class="far fa-sad-cry"></i>');
+      lose();
     }
     else if (argComputerMove == 'nożyce' && argPlayerMove == 'nożyce') {
-      printMessage('Remis!');
+      printMessage('Remis! <i class="far fa-surprise"></i>');
       return 'Remis!';
     }
-    else if (argComputerMove == 'kamień' && argPlayerMove == 'nieznany ruch') {
+   /* else if (argComputerMove == 'kamień' && argPlayerMove == 'nieznany ruch') {
       printMessage('Błędnie wpisany ruch!');
       return 'Błędnie wpisany ruch!';
     }
@@ -88,9 +98,19 @@
     else if (argComputerMove == 'nożyce' && argPlayerMove == 'nieznany ruch') {
       printMessage('Błędnie wpisany ruch!');
       return 'Błędnie wpisany ruch!';
-    }
+    }*/
+    
   }
+
   displayResult(argComputerMove,argPlayerMove);
+
+  function win() {
+    playerPoints = playerPoints + 1;
+  }
+  function lose() {
+    computerPoints = computerPoints + 1;
+  }
+  
 } 
 
   document.getElementById('play-rock').addEventListener('click', function(){
@@ -102,4 +122,6 @@
   document.getElementById('play-scissors').addEventListener('click', function(){
     playGame(3);
   });
+  
+
 }
